@@ -1,0 +1,22 @@
+{
+  "name": "css-in-jsx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build src/index.js"
+  },
+  "author": "Adrien Gautier",
+  "license": "MIT",
+  "dependencies": {
+    "fast-memoize": "^2.5.2",
+    "react": "16.8.0",
+    "sha1": "^1.1.1",
+    "stylis": "^4.0.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-externals": "^0.4.0"
+  }
+}
