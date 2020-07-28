@@ -1,5 +1,5 @@
-import {compile, serialize, stringify} from 'stylis';
+import {compile, serialize, middleware, stringify} from 'stylis';
 
-const compileStyle = (cleanedStyle) => serialize(compile(cleanedStyle), stringify);
+const compileStyle = (style) => serialize(compile(style), middleware([stringify]));
 
 export default compileStyle;

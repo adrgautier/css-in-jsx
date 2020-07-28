@@ -5,7 +5,7 @@
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watch",
     "build": "rollup -c"
   },
   "author": "Adrien Gautier",
@@ -16,13 +16,14 @@
   "dependencies": {
     "fast-memoize": "^2.5.2",
     "sha1": "^1.1.1",
-    "stylis": "^4.0.1"
+    "stylis": "adrgautier/stylis.js#master"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
     "@rollup/plugin-babel": "^5.1.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
+    "jest": "^26.3.0",
     "rollup": "^2.23.0"
   }
 }
