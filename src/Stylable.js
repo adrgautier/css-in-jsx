@@ -1,7 +1,6 @@
 import React from 'react';
 
 import fragmentsToBrackets from './utils/fragmentsToBrackets';
-import childrenToString from './utils/childrenToString';
 import createUniqueId from './utils/createUniqueId';
 import computeStyle from './utils/computeStyle';
 import tagsList from './constants/tags';
@@ -17,7 +16,7 @@ export const createStylableComponent = (typeOrComponent) => {
 
         // pass classname to style element
         if(element.type === "style") {
-            rawStyle = childrenToString(React.Children.map(element.props.children, fragmentsToBrackets));
+            rawStyle = fragmentsToBrackets(element);
             return false;
         }
 

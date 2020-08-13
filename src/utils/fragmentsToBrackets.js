@@ -1,11 +1,20 @@
 import React from 'react';
-import childrenToString from './childrenToString';
 
 const fragmentsToBrackets = (element) => {
-    if(React.isValidElement(element)) {
-        return `{${childrenToString(React.Children.map(element.props.children, fragmentsToBrackets))}}`;
+    let outputStyle = element;
+
+    if(!React.isValidElement(element)) {
+        return outputStyle;
     }
-    return element;
+
+    outputStyle = '';
+
+    React.Children.forEach(element.props.children, child => {
+        const childOutputStyle = fragmentsToBrackets(child);
+        outputStyle += childOutputStyle;
+    })
+
+    return `{${outputStyle}}`;
 };
 
 export default fragmentsToBrackets;

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`scopeStyle should match snapshot 1`] = `
+"
+    .abc123{
+        
+            color: black;
+            .active {
+                color: red;
+            }
+        
+    }
+"
+`;
