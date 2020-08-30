@@ -1,9 +1,9 @@
-import compileStyle from './compileStyle';
+import compileStyle from "./compileStyle";
 
-describe('compileStyle', () => {
-    it('should match snapshot', () => {
-        // GIVEN
-        const scopedStyleMock = `
+describe("compileStyle", () => {
+  it("should match snapshot", () => {
+    // GIVEN
+    const scopedStyleMock = `
         .scope {
             .card {
                 display: block;
@@ -17,11 +17,10 @@ describe('compileStyle', () => {
         }
         `;
 
-        // WHEN
-        const compiledStyle = compileStyle(scopedStyleMock);
+    // WHEN
+    const compiledStyle = compileStyle(scopedStyleMock);
 
-        // THEN
-        expect(compiledStyle).toMatchSnapshot();
-
-    });
-})
+    // THEN
+    expect(compiledStyle).toMatchSnapshot();
+  });
+});

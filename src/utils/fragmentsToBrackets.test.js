@@ -1,20 +1,19 @@
-import React from 'react';
-import fragmentsToBrackets from './fragmentsToBrackets';
+import React from "react";
+import fragmentsToBrackets from "./fragmentsToBrackets";
 
-describe('fragmentsToBrackets', () => {
-    it('should match snapshot', () => {
-        // GIVEN
-        const styleAsFragments = <>
-            color: black;
-            .active<>
-                color: red;
-            </>
-        </>
+describe("fragmentsToBrackets", () => {
+  it("should match snapshot", () => {
+    // GIVEN
+    const styleAsFragments = (
+      <>
+        color: black; .active<>color: red;</>
+      </>
+    );
 
-        // WHEN
-        const styleAsBrackets = fragmentsToBrackets(styleAsFragments);
+    // WHEN
+    const styleAsBrackets = fragmentsToBrackets(styleAsFragments);
 
-        // THEN
-        expect(styleAsBrackets).toMatchSnapshot();
-    });
+    // THEN
+    expect(styleAsBrackets).toMatchSnapshot();
+  });
 });

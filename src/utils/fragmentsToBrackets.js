@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 
 const fragmentsToBrackets = (element) => {
-    let outputStyle = element;
+  let outputStyle = element;
 
-    if(!React.isValidElement(element)) {
-        return outputStyle;
-    }
+  if (!React.isValidElement(element)) {
+    return outputStyle;
+  }
 
-    outputStyle = '';
+  outputStyle = "";
 
-    React.Children.forEach(element.props.children, child => {
-        const childOutputStyle = fragmentsToBrackets(child);
-        outputStyle += childOutputStyle;
-    })
+  React.Children.forEach(element.props.children, (child) => {
+    const childOutputStyle = fragmentsToBrackets(child);
+    outputStyle += childOutputStyle;
+  });
 
-    return `{${outputStyle}}`;
+  return `{${outputStyle}}`;
 };
 
 export default fragmentsToBrackets;

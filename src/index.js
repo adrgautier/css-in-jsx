@@ -1,3 +1,3 @@
-import Stylable from './Stylable';
+import Stylable from "./Stylable";
 
 export default Stylable;

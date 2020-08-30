@@ -5,8 +5,17 @@
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.esm.js",
   "scripts": {
-    "test": "jest --watch",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "format": "prettier --write .",
+    "test": "jest --watch"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "prettier --write --ignore-unknown"
+    }
+  },
+  "lint-staged": {
+    "**/*": "npformat"
   },
   "author": "Adrien Gautier",
   "license": "MIT",
@@ -24,7 +33,10 @@
     "@babel/preset-react": "^7.10.4",
     "@rollup/plugin-babel": "^5.1.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
+    "husky": "^4.2.5",
     "jest": "^26.3.0",
+    "lint-staged": "^10.2.13",
+    "prettier": "2.1.1",
     "react": "^16.13.1",
     "rollup": "^2.23.0"
   }

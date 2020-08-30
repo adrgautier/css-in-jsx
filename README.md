@@ -1,17 +1,18 @@
 # <>CSS</>
 
-**CSS-in-JSX** is yet another approach for style in react. 
+**CSS-in-JSX** is yet another approach for style in react.
 
 > ⚠️ This is a proof of concept and should not be used on any production website. ⚠️
 
 ## Principles
 
 ### Interpolation
+
 Unlike most CSS-in-JS libraries, styles interpolation is not powered by template literals, but rather by JSX itself. That means:
 
 ```js
-`color: ${PRIMARY_COLOR};`
-````
+`color: ${PRIMARY_COLOR};`;
+```
 
 Becomes:
 
@@ -19,39 +20,35 @@ Becomes:
 <>color: {LINK_COLOR};</>
 ```
 
-The interpolation is  powered by the `{`AssignmentExpression`}` from jsx.
+The interpolation is powered by the `{`AssignmentExpression`}` from jsx.
 
 ```js
-css`color: ${props => props.active ? PRIMARY_COLOR: 'white'};`
-````
+css`
+  color: ${(props) => (props.active ? PRIMARY_COLOR : "white")};
+`;
+```
 
 Becomes:
 
 ```jsx
-<>color: {props.active ? PRIMARY_COLOR: 'white'};</>
+<>color: {props.active ? PRIMARY_COLOR : "white"};</>
 ```
 
 ### CSS blocks
 
-CSS blocks are usually shaped using the `{` and `}` characters.  Since they are used for JSX assignment expressions, we leverage on fragments in order to write our CSS blocks. 
+CSS blocks are usually shaped using the `{` and `}` characters. Since they are used for JSX assignment expressions, we leverage on fragments in order to write our CSS blocks.
 
 #### Why fragments ?
 
 Fragments create quite a small footprint when writing CSS. With indentation, it becomes as readable as the original CSS syntax.
 
 Fragments can also be used for interpolated CSS properties. This creates a nice visual consistency:
+
 ```jsx
 <>
-	display: block;
-	color: white;
-	&:hover <>
-		color: blue;
-	</>
-	{active && <>
-		color: red;
-	</>}
+  display: block; color: white; &:hover <>color: blue;</>
+  {active && <>color: red;</>}
 </>
-
 ```
 
 ### Styling a component
@@ -61,43 +58,37 @@ In order to style a react component, this component need to be "stylable". When 
 Base stylable element can be created like this.
 
 ```jsx
-import Stylable from 'css-in-jsx';
+import Stylable from "css-in-jsx";
 
 function MyComponent() {
-    return (
-        <Stylable.div>
-          <style>
-              text-align: center;
-              .link <>
-                color: {LINK_COLOR};
-              </>
-          </style>
-          Lorem <a className='link'>ipsum</a>...
-        </Stylable.div>
-    );
+  return (
+    <Stylable.div>
+      <style>
+        text-align: center; .link <>color: {LINK_COLOR};</>
+      </style>
+      Lorem <a className="link">ipsum</a>...
+    </Stylable.div>
+  );
 }
 ```
 
 You can also style any component that accept a `className` prop like so:
 
 ```jsx
-import Stylable from 'css-in-jsx';
-import Card from './components/card'; 
+import Stylable from "css-in-jsx";
+import Card from "./components/card";
 
 const StylableCard = Stylable(Card);
 
 function MyComponent() {
-    return (
-        <StylableCard>
-          <style>
-              text-align: center;
-              .link <>
-                color: {LINK_COLOR};
-              </>
-          </style>
-          Lorem <a className='link'>ipsum</a>...
-        </StylableCard>
-    );
+  return (
+    <StylableCard>
+      <style>
+        text-align: center; .link <>color: {LINK_COLOR};</>
+      </style>
+      Lorem <a className="link">ipsum</a>...
+    </StylableCard>
+  );
 }
 ```
 
@@ -129,21 +120,25 @@ In order to make this tool production-ready, some milestones need to be overcame
 If you want to try this concept, please first clone this repository.
 
 Then build the library.
+
 ```sh
 npm run-script build
 ```
 
 Link the module globally.
+
 ```sh
 npm link
 ```
 
 In your project link the module.
+
 ```sh
 npm link css-in-jsx
 ```
 
 You should now be able to import the module in your project:
+
 ```js
-import Stylable from 'css-in-jsx';
+import Stylable from "css-in-jsx";
 ```
