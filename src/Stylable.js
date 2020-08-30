@@ -13,6 +13,9 @@ export const createStylableComponent = (typeOrComponent) => {
     let uniqueId = '';
 
     const finalChildren = React.Children.map(children, (element) => {
+        if(!element) {
+            return false;
+        }
 
         // pass classname to style element
         if(element.type === "style") {
