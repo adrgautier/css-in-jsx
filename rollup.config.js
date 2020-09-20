@@ -8,7 +8,7 @@ module.exports = {
     {
       file: "dist/index.cjs.js",
       format: "cjs",
-      exports: "default",
+      exports: "named",
     },
   ],
   external: ["react", "fast-memoize", "sha1", "stylis"],

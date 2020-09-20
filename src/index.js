@@ -1,3 +1,5 @@
-import Stylable from "./Stylable";
+import StylableComponents from "./Stylable";
+import StyledComponents from "./Styled";
 
-export default Stylable;
+export const Stylable = StylableComponents;
+export const Styled = StyledComponents;

@@ -6,26 +6,22 @@ import computeStyle from "./utils/computeStyle";
 import cachedStyles from "./utils/cachedStyles";
 import tagsList from "./constants/tags";
 
-export const createStylableComponent = (typeOrComponent) => {
-  return React.memo(({ children, className, ...props }) => {
+export const createStyledComponent = (typeOrComponent) => {
+  return (styleRenderer) => React.memo(({ children, className, ...props }) => {
     let rawStyle = "";
 
-    const finalChildren = React.Children.map(children, (element) => {
-      if (!element) {
-        return false;
+    if(styleRenderer) {
+      let styleFragment = styleRenderer;
+
+      if(!React.isValidElement(styleRenderer)){
+        styleFragment = styleRenderer(props)
       }
 
-      // pass classname to style element
-      if (element.type === "style") {
-        rawStyle = fragmentsToBrackets(element);
-        return false;
-      }
-
-      // passthrough
-      return element;
-    });
-
+      rawStyle = fragmentsToBrackets(styleFragment);
+    }
+    
     const uniqueId = createUniqueId(rawStyle);
+
     if (!cachedStyles[uniqueId]) {
       cachedStyles[uniqueId] = true;
 
@@ -48,19 +44,19 @@ export const createStylableComponent = (typeOrComponent) => {
         ...props,
         className: finalClassName,
       },
-      finalChildren
+      children
     );
   });
 };
 
-const Stylable = createStylableComponent;
+const Styled = createStyledComponent;
 
 tagsList.forEach((type) => {
-  const stylableComponent = createStylableComponent(type);
-  Object.defineProperty(Stylable, type, {
-    value: stylableComponent,
+  const styledComponent = createStyledComponent(type);
+  Object.defineProperty(Styled, type, {
+    value: styledComponent,
     writable: false,
   });
 });
 
-export default Stylable;
+export default Styled;
